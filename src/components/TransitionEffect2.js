@@ -19,7 +19,7 @@ const variants = {
     },
   },
   fadeOut: {
-    // opacity: 0,
+    opacity: 0,
     y: -100,
     transition: {
       duration: 1,
