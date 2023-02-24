@@ -1,46 +1,13 @@
-import { createRef } from "react";
-import { useRouter } from "next/router";
-import { CSSTransition, SwitchTransition } from "react-transition-group";
+import React from "react";
+import Link from "next/link";
 
-import Deploy from "./deploy";
-import Docs from "./docs";
-import Examples from "./examples";
-
-const routes = [
-  { path: "/", name: "Home", element: Deploy, nodeRef: createRef() },
-  { path: "/docs", name: "Docs", element: Docs, nodeRef: createRef() },
-  {
-    path: "/examples",
-    name: "Examples",
-    element: Examples,
-    nodeRef: createRef(),
-  },
-];
-
-const Example = () => {
-  const router = useRouter();
-
-  const { nodeRef } = routes.find((route) => route.path === router.pathname);
-
-  const Component = routes.find(
-    (route) => route.path === router.pathname
-  ).element;
-
+const HomePage = () => {
   return (
-    <div className="container">
-      <SwitchTransition>
-        <CSSTransition
-          key={router.pathname}
-          nodeRef={nodeRef}
-          timeout={300}
-          classNames="page"
-          unmountOnExit
-        >
-          <Component />
-        </CSSTransition>
-      </SwitchTransition>
+    <div>
+      <h1>HomePage</h1>
+      <Link href="about">Link To About</Link>
     </div>
   );
 };
 
-export default Example;
+export default HomePage;
