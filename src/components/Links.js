@@ -1,28 +1,27 @@
+import { createRef } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 
-const Links = () => (
-  <motion.div className="grid">
-    <Link href="/docs">
-        <h2>Documentation &rarr;</h2>
-        <p>Find in-depth information about Next.js features and API.</p>
-    </Link>
+import Deploy from "../pages/deploy";
+import Docs from "../pages/docs";
+import Examples from "../pages/examples";
 
-    <Link href="/learn">
-        <h2>Learn &rarr;</h2>
-        <p>Learn about Next.js in an interactive course with quizzes!</p>
-    </Link>
+const Links = () => {
+  const routes = [
+    { path: "/", name: "Home", element: Deploy, nodeRef: createRef() },
+    { path: "/docs", name: "Docs", element: Docs, nodeRef: createRef() },
+    {
+      path: "/examples",
+      name: "Examples",
+      element: Examples,
+      nodeRef: createRef(),
+    },
+  ];
 
-    <Link href="/examples">
-        <h2>Examples &rarr;</h2>
-        <p>Discover and deploy boilerplate example Next.js projects.</p>
+  return routes.map((route) => (
+    <Link key={route.path} href={route.path}>
+      {route.name}
     </Link>
-
-    <Link href="/deploy">
-        <h2>Deploy &rarr;</h2>
-        <p>Instantly deploy your Next.js site to a public URL with Vercel.</p>
-    </Link>
-  </motion.div>
-);
+  ));
+};
 
 export default Links;
