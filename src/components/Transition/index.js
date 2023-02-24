@@ -5,20 +5,20 @@ import {
   Transition as ReactTransition,
 } from "react-transition-group";
 
-const TIMEOUT = 200;
+const TIMEOUT = 500;
 
 const getTransitionStyles = {
   entering: {
     position: `absolute`,
-    transform: `translateX(500px)`,
+    transform: `translateX(calc(100% + 1rem))`,
   },
   entered: {
-    transition: `opacity ${TIMEOUT}ms ease-in-out, transform ${TIMEOUT}ms ease-in-out`,
-    transform: `translateX(0px)`,
+    transition: `transform ${TIMEOUT}ms ease-in-out`,
+    transform: `translateX(0)`,
   },
   exiting: {
-    transition: `opacity ${TIMEOUT}ms ease-in-out, transform ${TIMEOUT}ms ease-in-out`,
-    transform: `translateX(-500px)`,
+    transition: `transform ${TIMEOUT}ms ease-in-out`,
+    transform: `translateX(calc(-100% - 1rem))`,
   },
 };
 
@@ -39,6 +39,7 @@ const Transition = ({ children, location }) => {
           <div
             ref={nodeRef}
             style={{
+              width: "100%",
               ...getTransitionStyles[status],
             }}
           >
